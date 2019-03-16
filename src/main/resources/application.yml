@@ -1,0 +1,10 @@
+spring:
+  data.mongodb:
+    host: localhost # hostname
+    port: 27017 # port
+    #uri: mongodb://localhost:27017
+    database: gestaohospitaldb
+    username: admin
+    password: admin
+    authentication-database: admin
+    
