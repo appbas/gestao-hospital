@@ -2,12 +2,18 @@ package dev.codenation.gestaohospital;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class GestaoHospitalApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(GestaoHospitalApplication.class, args);
+	}
+	
+	@Bean
+	public CascadingMongoEventListener cascadingMongoEventListener() {
+		return new CascadingMongoEventListener();
 	}
 	
 	/*@Bean
