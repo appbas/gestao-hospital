@@ -1,4 +1,4 @@
-package dev.codenation.gestaohospital;
+package dev.codenation.gestaohospital.listeners;
 
 import java.lang.reflect.Field;
 
@@ -13,18 +13,19 @@ import org.springframework.data.mongodb.core.mapping.event.AfterSaveEvent;
 import org.springframework.data.mongodb.core.mapping.event.BeforeConvertEvent;
 import org.springframework.util.ReflectionUtils;
 
-public class CascadingMongoEventListener extends AbstractMongoEventListener {
+import dev.codenation.gestaohospital.documents.BaseDocument;
+
+public class CascadingMongoEventListener<D extends BaseDocument<?>> extends AbstractMongoEventListener<D> {
 	@Autowired
 	private MongoOperations mongoOperations;
 
 	@Override
-	public void onAfterSave(AfterSaveEvent event) {
-		// TODO Auto-generated method stub
+	public void onAfterSave(AfterSaveEvent<D> event) {
 		super.onAfterSave(event);
 	}
 
 	@Override
-	public void onBeforeConvert(BeforeConvertEvent event) {
+	public void onBeforeConvert(BeforeConvertEvent<D> event) {
 
 		ReflectionUtils.doWithFields(event.getSource().getClass(), new ReflectionUtils.FieldCallback() {
 
@@ -51,7 +52,7 @@ public class CascadingMongoEventListener extends AbstractMongoEventListener {
 	}
 	
 	@Override
-	public void onAfterLoad(AfterLoadEvent event) {
+	public void onAfterLoad(AfterLoadEvent<D> event) {
 		event.getSource();
 		super.onAfterLoad(event);
 	}

@@ -1,13 +1,11 @@
-package dev.codenation.gestaohospital.hospital;
+package dev.codenation.gestaohospital.documents;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import dev.codenation.gestaohospital.model.Endereco;
-
 @Document(collection = "hospitais")
-public class Hospital {
+public class Hospital extends BaseDocument<String> {
 
 	@Id
 	private String id;

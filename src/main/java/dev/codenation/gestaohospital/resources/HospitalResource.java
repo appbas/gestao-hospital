@@ -1,8 +1,11 @@
-package dev.codenation.gestaohospital.hospital;
+package dev.codenation.gestaohospital.resources;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 import org.springframework.hateoas.ResourceSupport;
+
+import dev.codenation.gestaohospital.controllers.HospitalController;
+import dev.codenation.gestaohospital.documents.Hospital;
 
 public class HospitalResource extends ResourceSupport {
 

@@ -1,10 +1,10 @@
-package dev.codenation.gestaohospital.model;
+package dev.codenation.gestaohospital.documents;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class Endereco {
+public class Endereco extends BaseDocument<String> {
 
 	@Id
 	private String id;

@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import dev.codenation.gestaohospital.listeners.CascadingMongoEventListener;
+
 @SpringBootApplication
 public class GestaoHospitalApplication {
 

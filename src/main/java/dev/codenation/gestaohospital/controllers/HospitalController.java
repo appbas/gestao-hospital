@@ -1,4 +1,4 @@
-package dev.codenation.gestaohospital.hospital;
+package dev.codenation.gestaohospital.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import dev.codenation.gestaohospital.documents.Hospital;
+import dev.codenation.gestaohospital.services.HospitalService;
 
 @RestController
 @RequestMapping(value = "/v1/hospitais", produces = "application/hal+json")
