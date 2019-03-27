@@ -1,6 +1,7 @@
 package dev.codenation.gestaohospital.documents;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "hospitais")
@@ -11,7 +12,8 @@ public class Hospital extends BaseDocument<String> {
 	private String nome;
 	private Integer leitos;
 	private Integer leitosDisponiveis;
-	private Endereco endereco;
+	@GeoSpatialIndexed
+	private double[] location;
 
 	public String getId() {
 		return id;
@@ -41,12 +43,12 @@ public class Hospital extends BaseDocument<String> {
 		this.leitosDisponiveis = leitosDisponiveis;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
+	public double[] getLocation() {
+		return location;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setLocation(double[] location) {
+		this.location = location;
 	}
 	
 }

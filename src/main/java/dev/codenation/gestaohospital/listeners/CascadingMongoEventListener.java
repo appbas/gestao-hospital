@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mapping.MappingException;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.event.AbstractMongoEventListener;
@@ -39,11 +38,11 @@ public class CascadingMongoEventListener<D extends BaseDocument<?>> extends Abst
 
 					ReflectionUtils.doWithFields(fieldValue.getClass(), callback);
 
-					if (!callback.isIdFound()) {
-						throw new MappingException("Cannot perform cascade save on child object without id set");
-					}
-
-					mongoOperations.save(fieldValue);
+//					if (!callback.isIdFound()) {
+//						throw new MappingException("Cannot perform cascade save on child object without id set");
+//					}
+//
+//					mongoOperations.save(fieldValue);
 				}
 			}
 		});
