@@ -1,7 +1,6 @@
 package dev.codenation.gestaohospital.documents;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "hospitais")
@@ -12,7 +11,6 @@ public class Hospital extends BaseDocument<String> {
 	private String nome;
 	private Integer leitos;
 	private Integer leitosDisponiveis;
-	@DBRef(db="enderecos")
 	private Endereco endereco;
 
 	public String getId() {
