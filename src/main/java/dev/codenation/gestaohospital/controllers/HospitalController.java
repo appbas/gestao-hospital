@@ -49,7 +49,7 @@ public class HospitalController {
 			@RequestParam("lat") double latitude, @RequestParam("distancia") double distancia) {
 
 		Optional.of(longitude).filter(d -> d > 0)
-				.orElseThrow(() -> new IllegalArgumentException("Distância não pode ser negativa"));
+				.orElseThrow(() -> new IllegalArgumentException("Distância do raio de pesquisa não pode ser negativa"));
 		
 		return ResponseEntity.ok(service.localizar(longitude, latitude, distancia));
 	}
