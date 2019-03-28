@@ -1,6 +1,7 @@
 package dev.codenation.gestaohospital.controllers;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,24 +28,30 @@ import dev.codenation.gestaohospital.services.HospitalService;
 @RestController
 @RequestMapping(value = "/v1/hospitais")
 public class HospitalController {
-	
+
 	@Autowired
 	private HospitalService service;
-	
+
 	@GetMapping(produces = "application/hal+json")
-	public ResponseEntity<Resources<HospitalResource>> pesquisar(Pageable pageable, PagedResourcesAssembler<Hospital> assembler) {
-		
-		List<HospitalResource> collection = service.pesquisar(pageable).stream().map(HospitalResource::new).collect(Collectors.toList());
+	public ResponseEntity<Resources<HospitalResource>> pesquisar(Pageable pageable,
+			PagedResourcesAssembler<Hospital> assembler) {
+
+		List<HospitalResource> collection = service.pesquisar(pageable).stream().map(HospitalResource::new)
+				.collect(Collectors.toList());
 		final Resources<HospitalResource> resources = new Resources<>(collection);
 		final String uriString = ServletUriComponentsBuilder.fromCurrentRequest().build().toUriString();
 		resources.add(new Link(uriString, "self"));
 		return ResponseEntity.ok(resources);
 	}
-	
+
 	@GetMapping(value = "/localizar")
-	public ResponseEntity<GeoResults<Hospital>> obterHospitaisProximo(@RequestParam("lon") double longitude, @RequestParam("lat")double latitude) {
+	public ResponseEntity<GeoResults<Hospital>> obterHospitaisProximo(@RequestParam("lon") double longitude,
+			@RequestParam("lat") double latitude, @RequestParam("distancia") double distancia) {
+
+		Optional.of(longitude).filter(d -> d > 0)
+				.orElseThrow(() -> new IllegalArgumentException("Distância do raio de pesquisa não pode ser negativa"));
 		
-		return ResponseEntity.ok(service.localizar(longitude, latitude));//ResponseEntity.ok(body)
+		return ResponseEntity.ok(service.localizar(longitude, latitude, distancia));
 	}
 	
 	@GetMapping("/{id}")

@@ -32,8 +32,8 @@ public class HospitalService {
 		return repository.insert(hospital);
 	}
 
-	public GeoResults<Hospital> localizar(double longitude, double latitude) {
-		return repository.findByLocationNear(new Point(longitude, latitude), new Distance(30, Metrics.KILOMETERS));
+	public GeoResults<Hospital> localizar(double longitude, double latitude, double distancia) {
+		return repository.findByLocationNear(new Point(longitude, latitude), new Distance(distancia, Metrics.KILOMETERS));
 	}
 
 }
