@@ -1,11 +1,11 @@
 spring:
  data.mongodb:
-  host: ds125486.mlab.com # hostname
-  port: 25486 # port
-  #uri: mongodb://localhost:27017/gestaohospitaldb
-  database: gestaohospitaldb
-  username: gestaohospital
-  password: gh123456@@.
+  #host: ds125486.mlab.com # hostname
+  #port: 25486 # port
+  uri: mongodb://localhost:27017/gestaohospitaldb
+  #database: gestaohospitaldb
+  #username: gestaohospital
+  #password: gh123456@@.
   #authentication-database: admin
 server:
  port: 9980
