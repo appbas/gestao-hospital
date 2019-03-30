@@ -1,8 +1,10 @@
-package dev.codenation.gestaohospital.documents;
+package dev.codenation.gestaohospital.hospital;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import dev.codenation.gestaohospital.documents.BaseDocument;
 
 @Document(collection = "hospitais")
 public class Hospital extends BaseDocument<String> {

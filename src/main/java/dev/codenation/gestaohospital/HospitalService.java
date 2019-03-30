@@ -1,4 +1,4 @@
-package dev.codenation.gestaohospital.services;
+package dev.codenation.gestaohospital;
 
 import java.util.Optional;
 
@@ -11,14 +11,14 @@ import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
 
-import dev.codenation.gestaohospital.documents.Hospital;
-import dev.codenation.gestaohospital.repositories.IHospitalRepository;
+import dev.codenation.gestaohospital.hospital.Hospital;
+import dev.codenation.gestaohospital.hospital.HospitalRepository;
 
 @Service
 public class HospitalService {
 	
 	@Autowired
-	private IHospitalRepository repository;
+	private HospitalRepository repository;
 	
 	public Page<Hospital> pesquisar(Pageable pageable) {
 		return repository.findAll(pageable);

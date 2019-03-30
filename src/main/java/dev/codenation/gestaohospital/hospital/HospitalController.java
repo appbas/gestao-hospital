@@ -1,4 +1,4 @@
-package dev.codenation.gestaohospital.controllers;
+package dev.codenation.gestaohospital.hospital;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import dev.codenation.gestaohospital.documents.Hospital;
-import dev.codenation.gestaohospital.resources.HospitalResource;
-import dev.codenation.gestaohospital.services.HospitalService;
+import dev.codenation.gestaohospital.HospitalService;
 
 @RestController
 @RequestMapping(value = "/v1/hospitais")
