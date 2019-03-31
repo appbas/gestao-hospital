@@ -15,7 +15,7 @@ public class Hospital extends BaseDocument<String> {
 	private Integer leitos;
 	private Integer leitosDisponiveis;
 	@GeoSpatialIndexed
-	private double[] location;
+	private double[] endereco;
 
 	public String getId() {
 		return id;
@@ -45,12 +45,12 @@ public class Hospital extends BaseDocument<String> {
 		this.leitosDisponiveis = leitosDisponiveis;
 	}
 
-	public double[] getLocation() {
-		return location;
+	public double[] getEndereco() {
+		return endereco;
 	}
 
-	public void setLocation(double[] location) {
-		this.location = location;
+	public void setEndereco(double[] endereco) {
+		this.endereco = endereco;
 	}
 	
 }
