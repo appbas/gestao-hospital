@@ -1,4 +1,4 @@
-package dev.codenation.gestaohospital;
+package dev.codenation.gestaohospital.hospital;
 
 import java.util.Optional;
 
@@ -10,9 +10,6 @@ import org.springframework.data.geo.GeoResults;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
-
-import dev.codenation.gestaohospital.hospital.Hospital;
-import dev.codenation.gestaohospital.hospital.HospitalRepository;
 
 @Service
 public class HospitalService {
