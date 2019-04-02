@@ -15,24 +15,24 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.client.RestClientException;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ExtendWith(SpringExtension.class)
-@AutoConfigureMockMvc
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@ExtendWith(SpringExtension.class)
+//@AutoConfigureMockMvc
 public class GestaohospitalApplicationTests {
 	
-	private static final String BASE_PATH = "/v1/hospitais";
-	@Autowired
-	private MockMvc mockMvc;
+//	private static final String BASE_PATH = "/v1/hospitais";
+//	@Autowired
+//	private MockMvc mockMvc;
 	
-	@Autowired
-    private TestRestTemplate restTemplate;
+//	@Autowired
+//    private TestRestTemplate restTemplate;
 	
-	@LocalServerPort
-    private int port;
+//	@LocalServerPort
+//    private int port;
 
-	@Test
-	public void contextLoads() throws RestClientException, URISyntaxException {
-		restTemplate.getForEntity(new URI("http://localhost:"+port+"/v1/hospitais").toString(), String.class);
-	}
+//	@Test
+//	public void contextLoads() throws RestClientException, URISyntaxException {
+//		restTemplate.getForEntity(new URI("http://localhost:"+port+"/v1/hospitais").toString(), String.class);
+//	}
 
 }

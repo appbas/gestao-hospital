@@ -1,4 +1,4 @@
-package dev.codenation.gestaohospital.controllers;
+package dev.codenation.gestaohospital.hospital;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,10 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import dev.codenation.gestaohospital.documents.Hospital;
-import dev.codenation.gestaohospital.resources.HospitalResource;
-import dev.codenation.gestaohospital.services.HospitalService;
 
 @RestController
 @RequestMapping(value = "/v1/hospitais")
@@ -49,7 +45,7 @@ public class HospitalController {
 			@RequestParam("lat") double latitude, @RequestParam("distancia") double distancia) {
 
 		Optional.of(longitude).filter(d -> d > 0)
-				.orElseThrow(() -> new IllegalArgumentException("Distância do raio de pesquisa não pode ser negativa"));
+				.orElseThrow(() -> new IllegalArgumentException("Distancia do raio de pesquisa nao pode ser negativa"));
 		
 		return ResponseEntity.ok(service.localizar(longitude, latitude, distancia));
 	}

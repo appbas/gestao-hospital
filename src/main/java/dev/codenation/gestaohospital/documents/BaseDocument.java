@@ -4,5 +4,5 @@ import java.io.Serializable;
 
 public abstract class BaseDocument<E extends Serializable> {
 
-	abstract E getId();
+	public abstract E getId();
 }
