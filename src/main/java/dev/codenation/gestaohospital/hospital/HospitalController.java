@@ -44,7 +44,7 @@ public class HospitalController {
 	public ResponseEntity<GeoResults<Hospital>> obterHospitaisProximo(@RequestParam("lon") double longitude,
 			@RequestParam("lat") double latitude, @RequestParam("distancia") double distancia) {
 
-		Optional.of(longitude).filter(d -> d > 0)
+		Optional.of(distancia).filter(d -> d > 0)
 				.orElseThrow(() -> new IllegalArgumentException("Distancia do raio de pesquisa nao pode ser negativa"));
 		
 		return ResponseEntity.ok(service.localizar(longitude, latitude, distancia));

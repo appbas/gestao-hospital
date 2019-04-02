@@ -12,6 +12,6 @@ public interface HospitalRepository extends MongoRepository<Hospital, String> {
 	// No metric: {'geoNear' : 'person', 'near' : [x, y], maxDistance : distance }
 	// Metric: {'geoNear' : 'person', 'near' : [x, y], 'maxDistance' : distance,
 	//          'distanceMultiplier' : metric.multiplier, 'spherical' : true }
-	GeoResults<Hospital> findByLocationNear(Point location, Distance distance);
+	GeoResults<Hospital> findByLocationNear(Point endereco, Distance distance);
 	
 }
