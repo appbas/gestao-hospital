@@ -1,14 +1,25 @@
 package dev.codenation.gestaohospital.tipoproduto;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.Id;
 
 import dev.codenation.gestaohospital.documents.BaseDocument;
 
-public class TipoProduto extends BaseDocument<String> {
+public class TipoProduto extends BaseDocument<Integer> {
 
 	@Id
-	private String id;
+	@NotNull
+	private Integer id;
+	@NotNull
 	private String descricao;
+	
+	public TipoProduto() {
+		super();
+	}
+	public TipoProduto(Integer id) {
+		this.id = id;
+	}
 	
 	public TipoProduto(String descricao) {
 		this.descricao = descricao;
@@ -22,7 +33,7 @@ public class TipoProduto extends BaseDocument<String> {
 		this.descricao = descricao;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 

@@ -24,7 +24,7 @@ public class TipoProdutoController {
 	}
 	
 	@GetMapping("/{id}")
-	public Optional<TipoProduto> obterPorId(@RequestParam("id") String id) {
+	public Optional<TipoProduto> obterPorId(@RequestParam("id") Integer id) {
 		return service.obterPorId(id);
 	}
 	

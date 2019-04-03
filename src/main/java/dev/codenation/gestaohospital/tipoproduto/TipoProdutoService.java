@@ -16,7 +16,7 @@ public class TipoProdutoService {
 		return tipoProdutoRepository.findAll();
 	}
 	
-	public Optional<TipoProduto> obterPorId(String id) {
+	public Optional<TipoProduto> obterPorId(Integer id) {
 		return tipoProdutoRepository.findById(id);
 	}
 	
