@@ -26,26 +26,26 @@ public class CascadingMongoEventListener<D extends BaseDocument<?>> extends Abst
 	@Override
 	public void onBeforeConvert(BeforeConvertEvent<D> event) {
 
-		ReflectionUtils.doWithFields(event.getSource().getClass(), new ReflectionUtils.FieldCallback() {
-
-			public void doWith(Field field) throws IllegalArgumentException, IllegalAccessException {
-				ReflectionUtils.makeAccessible(field);
-
-				if (field.isAnnotationPresent(DBRef.class) /* && field.isAnnotationPresent(CascadeSave.class) */) {
-					final Object fieldValue = field.get(event.getSource());
-
-					DbRefFieldCallback callback = new DbRefFieldCallback();
-
-					ReflectionUtils.doWithFields(fieldValue.getClass(), callback);
-
-//					if (!callback.isIdFound()) {
-//						throw new MappingException("Cannot perform cascade save on child object without id set");
-//					}
+//		ReflectionUtils.doWithFields(event.getSource().getClass(), new ReflectionUtils.FieldCallback() {
 //
-//					mongoOperations.save(fieldValue);
-				}
-			}
-		});
+//			public void doWith(Field field) throws IllegalArgumentException, IllegalAccessException {
+//				ReflectionUtils.makeAccessible(field);
+//
+//				if (field.isAnnotationPresent(DBRef.class) /* && field.isAnnotationPresent(CascadeSave.class) */) {
+//					final Object fieldValue = field.get(event.getSource());
+//
+//					DbRefFieldCallback callback = new DbRefFieldCallback();
+//
+//					ReflectionUtils.doWithFields(fieldValue.getClass(), callback);
+//
+////					if (!callback.isIdFound()) {
+////						throw new MappingException("Cannot perform cascade save on child object without id set");
+////					}
+////
+////					mongoOperations.save(fieldValue);
+//				}
+//			}
+//		});
 
 		super.onBeforeConvert(event);
 	}

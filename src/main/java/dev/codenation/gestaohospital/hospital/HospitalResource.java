@@ -10,7 +10,7 @@ public class HospitalResource extends ResourceSupport {
 
 	public HospitalResource(Hospital hospital) {
 		this.hospital = hospital;
-		add(linkTo(HospitalController.class).withRel("Hospital"));
+		add(linkTo(HospitalController.class).slash(hospital.getId()).withRel("Hospital"));
 	}
 
 	public Hospital getHospital() {
