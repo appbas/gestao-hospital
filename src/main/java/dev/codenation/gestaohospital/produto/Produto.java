@@ -1,16 +1,26 @@
 package dev.codenation.gestaohospital.produto;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import dev.codenation.gestaohospital.tipoproduto.TipoProduto;
+
+@Document(collection = "produtos")
 public class Produto {
 
+	@Id
+	private String id;
 	private String nome;
 	private String descricao;
-	private TipoProdutoEnum tipoProduto;
+	@DBRef
+	private TipoProduto tipoProduto;
 	
 	public Produto() {
 		super();
 	}
 	
-	public Produto(TipoProdutoEnum tipoProduto) {
+	public Produto(TipoProduto tipoProduto) {
 		this.tipoProduto = tipoProduto;
 	}
 	
@@ -30,8 +40,11 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public TipoProdutoEnum getTipoProduto() {
+	public TipoProduto getTipoProduto() {
 		return tipoProduto;
 	}
 
+	public String getId() {
+		return id;
+	}
 }

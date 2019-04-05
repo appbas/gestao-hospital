@@ -5,11 +5,10 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import dev.codenation.gestaohospital.documents.BaseDocument;
-import dev.codenation.gestaohospital.produto.Produto;
+import dev.codenation.gestaohospital.estoque.Estoque;
 
 @Document(collection = "hospitais")
 public class Hospital extends BaseDocument<String> {
@@ -21,14 +20,13 @@ public class Hospital extends BaseDocument<String> {
 	private Integer leitosDisponiveis;
 	@GeoSpatialIndexed
 	private Point location;
-//	@DBRef
-	private List<Produto> estoque;
+	private List<Estoque> estoque;
 
 	public String getId() {
 		return id;
 	}
 
-	public String getNome() {
+	public String getNome() { 
 		return nome;
 	}
 
@@ -60,11 +58,11 @@ public class Hospital extends BaseDocument<String> {
 		this.location = location;
 	}
 
-	public List<Produto> getEstoque() {
+	public List<Estoque> getEstoque() {
 		return estoque;
 	}
 
-	public void setEstoque(List<Produto> estoque) {
+	public void setEstoque(List<Estoque> estoque) {
 		this.estoque = estoque;
 	}
 
