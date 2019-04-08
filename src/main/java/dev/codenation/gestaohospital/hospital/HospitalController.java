@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.geo.GeoResults;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import dev.codenation.gestaohospital.estoque.Estoque;
 
 @RestController
 @RequestMapping(value = "/v1/hospitais")
@@ -59,6 +63,12 @@ public class HospitalController {
 	public ResponseEntity<Hospital> cadastrar(@RequestBody Hospital hospital) {
 		service.cadastrar(hospital);
 		return new ResponseEntity<>(hospital, HttpStatus.OK);
+	}
+	
+	@GetMapping("/{id}/estoque")
+	public ResponseEntity<List<Estoque>> listarEstoques(@PathVariable("id") String id) {
+		
+		return ResponseEntity.ok(service.listarEstoque(id));
 	}
 	
 }
