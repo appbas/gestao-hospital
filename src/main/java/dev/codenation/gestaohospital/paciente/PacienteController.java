@@ -1,5 +1,6 @@
 package dev.codenation.gestaohospital.paciente;
 
+import dev.codenation.gestaohospital.leito.Leito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
@@ -7,14 +8,13 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.xml.transform.Result;
+import java.lang.reflect.InvocationTargetException;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -35,23 +35,24 @@ public class PacienteController {
         return ResponseEntity.ok(resources);
     }
 
-    @GetMapping()
-    public ResponseEntity<Paciente> obterPorId(String Id){
+    @GetMapping("/{id}")
+    public ResponseEntity<Paciente> obterPorId(@PathVariable(name = "id") String Id){
         return ResponseEntity.ok(service.obterPorId(Id).orElse(null));
     }
 
-    @GetMapping()
-    public ResponseEntity<Paciente> obterPorCpf(String Cpf){
+    @GetMapping("/{cpf}")
+    public ResponseEntity<Paciente> obterPorCpf(@PathVariable(name = "cpf") String Cpf){
         return ResponseEntity.ok(service.obterPorCpf(Cpf).orElse(null));
     }
 
-    @GetMapping()
-    public ResponseEntity<List<Paciente>> obterPorNome(String nome){
+    @GetMapping("/{nome}")
+    public ResponseEntity<List<Paciente>> obterPorNome(@PathVariable(name = "nome") String nome){
         return ResponseEntity.ok(service.obterPorNome(nome));
     }
 
-    @GetMapping()
-    public ResponseEntity<Paciente> cadastrar(Paciente paciente){
-        return new ResponseEntity<>(service.cadastrar(paciente),HttpStatus.OK);
+    @PostMapping()
+    public ResponseEntity<Paciente> cadastrar(@RequestBody Paciente paciente){
+            return new ResponseEntity<>(service.cadastrar(paciente), HttpStatus.OK);
     }
+
 }

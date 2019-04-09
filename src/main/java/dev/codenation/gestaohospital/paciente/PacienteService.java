@@ -30,5 +30,9 @@ public class PacienteService {
     public Page<Paciente> pesquisar(Pageable pageable) {
         return repository.findAll(pageable);
     }
+    public Paciente atualizar(Paciente paciente) {
+        return repository.save(paciente);
+    }
+
 
 }
