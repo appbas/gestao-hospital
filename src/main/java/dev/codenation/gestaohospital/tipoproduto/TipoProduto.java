@@ -3,7 +3,7 @@ package dev.codenation.gestaohospital.tipoproduto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import dev.codenation.gestaohospital.documents.BaseDocument;
+import dev.codenation.gestaohospital.padrao.BaseDocument;
 
 @Document(collection = "tiposProdutos")
 public class TipoProduto extends BaseDocument<String> {

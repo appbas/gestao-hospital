@@ -1,9 +1,10 @@
 package dev.codenation.gestaohospital.leito;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import dev.codenation.gestaohospital.padrao.GestaoHospitalRepository;
+
 @Repository
-public interface LeitoRepository extends MongoRepository<Leito,String> {
+public interface LeitoRepository extends GestaoHospitalRepository<Leito,String> {
 
 }

@@ -1,9 +1,10 @@
 package dev.codenation.gestaohospital.produto;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import dev.codenation.gestaohospital.padrao.GestaoHospitalRepository;
+
 @Repository
-public interface ProdutoRepository extends MongoRepository<Produto, String> {
+public interface ProdutoRepository extends GestaoHospitalRepository<Produto, String> {
 
 }

@@ -1,18 +1,14 @@
 package dev.codenation.gestaohospital.hospital;
 
-import java.util.List;
-
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.GeoResults;
 import org.springframework.data.geo.Point;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import dev.codenation.gestaohospital.estoque.Estoque;
+import dev.codenation.gestaohospital.padrao.GestaoHospitalRepository;
 
 @Repository
-public interface HospitalRepository extends MongoRepository<Hospital, String> {
+public interface HospitalRepository extends GestaoHospitalRepository<Hospital, String> {
 	
 	// No metric: {'geoNear' : 'person', 'near' : [x, y], maxDistance : distance }
 	// Metric: {'geoNear' : 'person', 'near' : [x, y], 'maxDistance' : distance,

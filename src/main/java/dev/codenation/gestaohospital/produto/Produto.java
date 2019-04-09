@@ -4,10 +4,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import dev.codenation.gestaohospital.padrao.BaseDocument;
 import dev.codenation.gestaohospital.tipoproduto.TipoProduto;
 
 @Document(collection = "produtos")
-public class Produto {
+public class Produto extends BaseDocument<String> {
 
 	@Id
 	private String id;

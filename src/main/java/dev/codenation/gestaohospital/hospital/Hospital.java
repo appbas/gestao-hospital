@@ -8,8 +8,8 @@ import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Indexed;
 
-import dev.codenation.gestaohospital.documents.BaseDocument;
 import dev.codenation.gestaohospital.estoque.Estoque;
+import dev.codenation.gestaohospital.padrao.BaseDocument;
 
 @Document(collection = "hospitais")
 public class Hospital extends BaseDocument<String> {

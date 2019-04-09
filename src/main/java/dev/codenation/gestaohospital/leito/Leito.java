@@ -5,8 +5,8 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import dev.codenation.gestaohospital.documents.BaseDocument;
 import dev.codenation.gestaohospital.paciente.Paciente;
+import dev.codenation.gestaohospital.padrao.BaseDocument;
 
 @Document(collection = "leitos")
 public class Leito extends BaseDocument<String> {
