@@ -3,12 +3,14 @@ package dev.codenation.gestaohospital.paciente;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import dev.codenation.gestaohospital.documents.BaseDocument;
+
 import java.util.Date;
 
 @Document(collection = "pacientes")
-public class Paciente {
+public class Paciente extends BaseDocument<String> {
     @Id
-    private int id;
+    private String id;
     private String CPF;
     private String nomeCompleto;
     private Genero genero;
@@ -23,6 +25,11 @@ public class Paciente {
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
         this.genero = genero;
+    }
+    
+    @Override
+    public String getId() {
+    	return id;
     }
 
     public String getCPF() {

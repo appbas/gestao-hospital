@@ -35,23 +35,23 @@ public class PacienteController {
         return ResponseEntity.ok(resources);
     }
 
-    @GetMapping()
-    public ResponseEntity<Paciente> obterPorId(String Id){
-        return ResponseEntity.ok(service.obterPorId(Id).orElse(null));
-    }
-
-    @GetMapping()
-    public ResponseEntity<Paciente> obterPorCpf(String Cpf){
-        return ResponseEntity.ok(service.obterPorCpf(Cpf).orElse(null));
-    }
-
-    @GetMapping()
-    public ResponseEntity<List<Paciente>> obterPorNome(String nome){
-        return ResponseEntity.ok(service.obterPorNome(nome));
-    }
-
-    @GetMapping()
-    public ResponseEntity<Paciente> cadastrar(Paciente paciente){
-        return new ResponseEntity<>(service.cadastrar(paciente),HttpStatus.OK);
-    }
+//    @GetMapping()
+//    public ResponseEntity<Paciente> obterPorId(String Id){
+//        return ResponseEntity.ok(service.obterPorId(Id).orElse(null));
+//    }
+//
+//    @GetMapping()
+//    public ResponseEntity<Paciente> obterPorCpf(String Cpf){
+//        return ResponseEntity.ok(service.obterPorCpf(Cpf).orElse(null));
+//    }
+//
+//    @GetMapping()
+//    public ResponseEntity<List<Paciente>> obterPorNome(String nome){
+//        return ResponseEntity.ok(service.obterPorNome(nome));
+//    }
+//
+//    @GetMapping()
+//    public ResponseEntity<Paciente> cadastrar(Paciente paciente){
+//        return new ResponseEntity<>(service.cadastrar(paciente),HttpStatus.OK);
+//    }
 }
