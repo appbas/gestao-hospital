@@ -12,6 +12,9 @@ import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -41,28 +44,52 @@ public class LeitoController {
         return ResponseEntity.ok(resources);
     }
 
-    @GetMapping()
+    /**
+     * Obter por id.
+     * 
+     * GET = Retorno um recurso ou uma lista do mestmo
+     *
+     * @param Id the id
+     * @return the response entity
+     */
+    @GetMapping
     public ResponseEntity<Leito> obterPorId(String Id){
         return ResponseEntity.ok(service.obterPorId(Id).orElse(null));
     }
 
-    @GetMapping()
+    /**
+     * Cadastrar.
+     * 
+     * POST = Utlizado,principalmente para inserir um novo recurso
+     *
+     * @param leito the leito
+     * @return the response entity
+     */
+    @PostMapping
     public ResponseEntity<Leito> cadastrar(Leito leito){
         return new ResponseEntity<>(service.cadastrar(leito), HttpStatus.OK);
     }
 
-    @GetMapping()
+    /**
+     * Atualizar.
+     * 
+     * PUT - Atualiza um recurso por completo.
+     *
+     * @param leito the leito
+     * @return the response entity
+     */
+    @PutMapping
     public ResponseEntity<Leito> atualizar(Leito leito){
         return new ResponseEntity<>(service.atualizar(leito), HttpStatus.OK);
     }
 
-    @GetMapping()
+    @PatchMapping("/{idPaciente}/check-in")
     public ResponseEntity<Leito> checkIn(Leito leito){
         leito.setDataEntrada(Date.from(Instant.now()));
         return new ResponseEntity<>(service.atualizar(leito), HttpStatus.OK);
     }
 
-    @GetMapping()
+    @PatchMapping("/{idPaciente}/check-out")
     public ResponseEntity<Leito> checkOut(Leito leito){
         if(leito.getDataEntrada()!=null) {
             leito.setDataSaida(Date.from(Instant.now()));

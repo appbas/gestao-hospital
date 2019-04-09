@@ -54,5 +54,4 @@ public class PacienteController {
     public ResponseEntity<Paciente> cadastrar(@RequestBody Paciente paciente){
             return new ResponseEntity<>(service.cadastrar(paciente), HttpStatus.OK);
     }
-
 }

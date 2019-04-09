@@ -1,17 +1,18 @@
 package dev.codenation.gestaohospital.leito;
 
-import dev.codenation.gestaohospital.paciente.Paciente;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Component;
-
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import dev.codenation.gestaohospital.documents.BaseDocument;
+import dev.codenation.gestaohospital.paciente.Paciente;
+
 @Document(collection = "leitos")
-public class Leito {
+public class Leito extends BaseDocument<String> {
 
     @Id
-    private int id;
+    private String id;
     private TipoAcomodacaoEnum tipoAcomodacao;
     private Paciente paciente;
     private Date dataEntrada;
@@ -19,8 +20,9 @@ public class Leito {
 
     public Leito(){}
 
-    public int getId() {
-        return id;
+    @Override
+    public String getId() {
+    	return id;
     }
 
     public TipoAcomodacaoEnum getTipoAcomodacao() {
