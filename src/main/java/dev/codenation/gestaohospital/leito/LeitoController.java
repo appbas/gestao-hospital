@@ -3,7 +3,7 @@ package dev.codenation.gestaohospital.leito;
 import dev.codenation.gestaohospital.hospital.Hospital;
 import dev.codenation.gestaohospital.hospital.HospitalResource;
 import dev.codenation.gestaohospital.paciente.Paciente;
-import dev.codenation.gestaohospital.paciente.PacienteService;
+import dev.codenation.gestaohospital.paciente.PacienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public class LeitoController {
 
     @Autowired
-    private LeitoService service;
+    private LeitoServiceImpl service;
 
     @GetMapping(produces = "application/hal+json")
     public ResponseEntity<Resources<LeitoResource>> pesquisar(Pageable pageable,
@@ -75,14 +75,14 @@ public class LeitoController {
      */
     @PutMapping
     public ResponseEntity<Leito> atualizar(Leito leito){
-        return new ResponseEntity<>(service.atualizar(leito), HttpStatus.OK);
+        return new ResponseEntity<>(service.alterar(leito), HttpStatus.OK);
     }
 
     @PatchMapping("/{idPaciente}/check-in")
     public ResponseEntity<Leito> checkIn(@PathVariable("idPaciente") String id, @RequestBody Leito leito){
         leito.getPaciente().setId(id);
         leito.setDataEntrada(Date.from(Instant.now()));
-        return new ResponseEntity<>(service.atualizar(leito), HttpStatus.OK);
+        return new ResponseEntity<>(service.alterar(leito), HttpStatus.OK);
     }
 
     @PatchMapping("/{idPaciente}/check-out")
@@ -90,7 +90,7 @@ public class LeitoController {
         if(leito.getDataEntrada()!=null) {
             leito.setDataSaida(Date.from(Instant.now()));
 
-            return new ResponseEntity<>(service.atualizar(leito), HttpStatus.OK);
+            return new ResponseEntity<>(service.alterar(leito), HttpStatus.OK);
         }
 
         return new ResponseEntity<>(leito, HttpStatus.NOT_MODIFIED);

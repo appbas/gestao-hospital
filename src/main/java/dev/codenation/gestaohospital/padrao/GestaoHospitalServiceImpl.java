@@ -1,5 +1,6 @@
 package dev.codenation.gestaohospital.padrao;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -9,7 +10,12 @@ public abstract class GestaoHospitalServiceImpl<T extends BaseDocument<I>, I ext
 
 	
 	@Override
-	public Page<T> listar(Pageable pageable) {
+	public List<T> listar() {
+		return getRepository().findAll();
+	}
+	
+	@Override
+	public Page<T> pesquisar(Pageable pageable) {
 		return getRepository().findAll(pageable);
 	}
 

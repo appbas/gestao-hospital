@@ -17,7 +17,9 @@ public class Leito extends BaseDocument<String> {
     private Date dataEntrada;
     private Date dataSaida;
 
-    public Leito(){}
+    public Leito(){
+    	super();
+    }
 
     public void setId(String id) {
         this.id = id;

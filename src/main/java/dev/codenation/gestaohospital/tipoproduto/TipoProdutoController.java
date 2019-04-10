@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TipoProdutoController {
 	
 	@Autowired
-	private TipoProdutoService service;
+	private TipoProdutoServiceImpl service;
 	
 	@GetMapping("/todos")
 	public List<TipoProduto> listar() {

@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class PacienteController {
 
     @Autowired
-    private PacienteService service;
+    private PacienteServiceImpl service;
 
     @GetMapping(produces = "application/hal+json")
     public ResponseEntity<Resources<PacienteResource>> pesquisar(Pageable pageable,
@@ -53,6 +53,6 @@ public class PacienteController {
 
     @PutMapping()
     public ResponseEntity<Paciente> atualizar(@RequestBody Paciente paciente){
-        return new ResponseEntity<>(service.atualizar(paciente), HttpStatus.OK);
+        return new ResponseEntity<>(service.alterar(paciente), HttpStatus.OK);
     }
 }
