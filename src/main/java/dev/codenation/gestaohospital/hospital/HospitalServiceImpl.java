@@ -8,11 +8,12 @@ import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.GeoResults;
 import org.springframework.data.geo.Metrics;
 import org.springframework.data.geo.Point;
+import org.springframework.stereotype.Service;
 
 import dev.codenation.gestaohospital.estoque.Estoque;
 import dev.codenation.gestaohospital.padrao.GestaoHospitalServiceImpl;
 
-
+@Service
 public class HospitalServiceImpl extends GestaoHospitalServiceImpl<Hospital, String> implements HospitalService {
 
 	@Autowired

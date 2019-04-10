@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProdutoController {
 
 	@Autowired
-	private ProdutoServiceImpl produtoService;
+	private ProdutoService produtoService;
 	
 	@GetMapping
 	public ResponseEntity<List<Produto>> listar() {

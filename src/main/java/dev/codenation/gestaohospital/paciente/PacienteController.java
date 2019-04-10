@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class PacienteController {
 
     @Autowired
-    private PacienteServiceImpl service;
+    private PacienteService service;
 
     @GetMapping(produces = "application/hal+json")
     public ResponseEntity<Resources<PacienteResource>> pesquisar(Pageable pageable,
