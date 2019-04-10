@@ -2,13 +2,13 @@ package dev.codenation.gestaohospital.hospital;
 
 import java.util.List;
 
+import dev.codenation.gestaohospital.padrao.BaseDocument;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.index.GeoSpatialIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Indexed;
 
-import dev.codenation.gestaohospital.documents.BaseDocument;
 import dev.codenation.gestaohospital.estoque.Estoque;
 
 @Document(collection = "hospitais")

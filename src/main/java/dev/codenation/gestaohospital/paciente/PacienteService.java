@@ -24,14 +24,17 @@ public class PacienteService {
     public List<Paciente> obterPorNome(String nome) {
         return repository.findAll().stream().filter(x->x.getNomeCompleto().contains(nome)).collect(Collectors.toList());
     }
-    public Optional<Paciente> obterPorCpf(String cpf) {
-        return repository.findAll().stream().filter(x->x.getCPF().equals(cpf)).findAny();
+    public List<Paciente> obterPorCpf(String cpf) {
+        return repository.findAll().stream().filter(x->x.getCPF().contains(cpf)).collect(Collectors.toList());
     }
     public Page<Paciente> pesquisar(Pageable pageable) {
         return repository.findAll(pageable);
     }
     public Paciente atualizar(Paciente paciente) {
         return repository.save(paciente);
+    }
+    public void excluir(Paciente paciente) {
+        repository.delete(paciente);
     }
 
 

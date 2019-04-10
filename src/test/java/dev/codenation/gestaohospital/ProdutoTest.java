@@ -1,8 +1,7 @@
 package dev.codenation.gestaohospital;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.codenation.gestaohospital.hospital.Hospital;
-import dev.codenation.gestaohospital.paciente.Genero;
+import dev.codenation.gestaohospital.produto.Produto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(locations = "classpath:test.properties")
-public class HospitalTest {
+public class ProdutoTest {
 
     ObjectMapper mapper = new ObjectMapper();
 
@@ -29,29 +28,23 @@ public class HospitalTest {
 
     private final HttpHeaders httpHeaders;
 
-    private String id = "5cad7eaad942f909fc285675";
-
     //PARA TESTAR CADASTRO
-    private String nomeHospital = "Hospital NotreDame";
-    private int quantidadeLeitos = 10;
+    private String nome = "Bolsão de sangue o+";
+    private String descricao = "Doação";
+    private String descricaoTipo = "Banco de Sangue";
 
-    private double longitude = 12;
-    private double latitude = 12;
-    private double distancia = 3;
-
-    public HospitalTest() {
+    public ProdutoTest() {
         httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
     }
 
     @Test
     public void cadastra() throws ParseException, IOException {
-        Hospital hospital = new Hospital();
-        hospital.setNome(nomeHospital);
-        hospital.setLeitos(quantidadeLeitos);
-        hospital.setLeitosDisponiveis(quantidadeLeitos);
+        Produto produto = new Produto();
+        produto.setNome(nome);
+        produto.setDescricao(descricao);
 
-        ResponseEntity<String> response = restTemplate.exchange("/v1/hospitais", HttpMethod.POST, new HttpEntity<>(mapper.writeValueAsString(hospital), httpHeaders), String.class);
+        ResponseEntity<String> response = restTemplate.exchange("/v1/produtos", HttpMethod.POST, new HttpEntity<>(mapper.writeValueAsString(produto), httpHeaders), String.class);
         System.out.println("Retorno: "+response.getBody());
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -59,28 +52,7 @@ public class HospitalTest {
 
     @Test
     public void pesquisa() {
-        ResponseEntity<String> response = restTemplate.getForEntity("/v1/hospitais", String.class);
-        System.out.println("Retorno: "+response.getBody());
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-    }
-
-    @Test
-    public void pesquisaPorId() throws IOException {
-        ResponseEntity<String> response = restTemplate.getForEntity("/v1/hospitais/"+id, String.class);
-        System.out.println("Retorno: "+response.getBody());
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-    }
-
-    @Test
-    public void listaEstoque() {
-        ResponseEntity<String> response = restTemplate.getForEntity("/v1/hospitais/"+id+"/estoque",String.class);
-        System.out.println("Retorno: "+response.getBody());
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-    }
-
-    @Test
-    public void localizaHospitalMaisProximo() {
-        ResponseEntity<String> response = restTemplate.getForEntity("/v1/hospitais/localizar?lon="+longitude+"&lat="+latitude+"&distancia="+distancia, String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity("/v1/produtos", String.class);
         System.out.println("Retorno: "+response.getBody());
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }

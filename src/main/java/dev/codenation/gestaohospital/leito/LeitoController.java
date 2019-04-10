@@ -11,12 +11,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.Resources;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.text.DateFormat;
@@ -84,13 +79,14 @@ public class LeitoController {
     }
 
     @PatchMapping("/{idPaciente}/check-in")
-    public ResponseEntity<Leito> checkIn(Leito leito){
+    public ResponseEntity<Leito> checkIn(@PathVariable("idPaciente") String id, @RequestBody Leito leito){
+        leito.getPaciente().setId(id);
         leito.setDataEntrada(Date.from(Instant.now()));
         return new ResponseEntity<>(service.atualizar(leito), HttpStatus.OK);
     }
 
     @PatchMapping("/{idPaciente}/check-out")
-    public ResponseEntity<Leito> checkOut(Leito leito){
+    public ResponseEntity<Leito> checkOut(@PathVariable("idPaciente") String id, @RequestBody Leito leito){
         if(leito.getDataEntrada()!=null) {
             leito.setDataSaida(Date.from(Instant.now()));
 

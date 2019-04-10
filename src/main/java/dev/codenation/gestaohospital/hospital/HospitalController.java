@@ -67,7 +67,7 @@ public class HospitalController {
 	
 	@GetMapping("/{id}/estoque")
 	public ResponseEntity<List<Estoque>> listarEstoques(@PathVariable("id") String id) {
-		
+
 		return ResponseEntity.ok(service.listarEstoque(id));
 	}
 	

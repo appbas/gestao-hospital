@@ -1,9 +1,8 @@
 package dev.codenation.gestaohospital.paciente;
 
+import dev.codenation.gestaohospital.padrao.BaseDocument;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import dev.codenation.gestaohospital.documents.BaseDocument;
 
 import java.util.Date;
 
@@ -26,8 +25,11 @@ public class Paciente extends BaseDocument<String> {
         this.dataNascimento = dataNascimento;
         this.genero = genero;
     }
-    
-    @Override
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getId() {
     	return id;
     }

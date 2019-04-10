@@ -1,13 +1,13 @@
 package dev.codenation.gestaohospital.produto;
 
+import dev.codenation.gestaohospital.padrao.BaseDocument;
+import dev.codenation.gestaohospital.tipoproduto.TipoProduto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import dev.codenation.gestaohospital.tipoproduto.TipoProduto;
-
 @Document(collection = "produtos")
-public class Produto {
+public class Produto  extends BaseDocument<String> {
 
 	@Id
 	private String id;
@@ -38,6 +38,10 @@ public class Produto {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public void setTipoProduto(TipoProduto tipoProduto) {
+		this.tipoProduto = tipoProduto;
 	}
 
 	public TipoProduto getTipoProduto() {
