@@ -4,10 +4,10 @@ import java.util.List;
 
 import dev.codenation.gestaohospital.padrao.GestaoHospitalService;
 
-public interface PacienteService extends GestaoHospitalService<Paciente, String> {
+public interface PacienteService extends GestaoHospitalService<Paciente, PacienteResource, String> {
 	
-	List<Paciente> obterPorNome(String nome);
+	List<PacienteResource> obterPorNome(String nome);
 	
-	List<Paciente> obterPorCpf(String cpf);
+	List<PacienteResource> obterPorCpf(String cpf);
 
 }

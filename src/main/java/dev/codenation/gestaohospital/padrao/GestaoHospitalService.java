@@ -4,18 +4,15 @@ package dev.codenation.gestaohospital.padrao;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
-public interface GestaoHospitalService<T extends BaseDocument<I>, I extends java.io.Serializable> {
+public interface GestaoHospitalService<E extends BaseDocument<I>, T extends GestaoHospitalResource, I extends java.io.Serializable> {
 	
 	List<T> listar();
 	
-	Page<T> pesquisar(Pageable pageable);
+	Paginacao<T> pesquisar(Paginacao<T> paginacao);
 	
-	T cadastrar(T objeto);
+	T cadastrar(E objeto);
 	
-	T alterar(T objeto);
+	T alterar(E objeto);
 	
 	Optional<T> obterPorId(I id);
 	

@@ -18,12 +18,12 @@ public class ProdutoController {
 	private ProdutoService produtoService;
 	
 	@GetMapping
-	public ResponseEntity<List<Produto>> listar() {
+	public ResponseEntity<List<ProdutoResource>> listar() {
 		return ResponseEntity.ok(produtoService.listar());
 	}
 	
 	@PostMapping
-	public ResponseEntity<Produto> cadastrar(@RequestBody Produto produto) {
+	public ResponseEntity<ProdutoResource> cadastrar(@RequestBody Produto produto) {
 		return ResponseEntity.ok(produtoService.cadastrar(produto));
 	}
 }

@@ -1,21 +1,28 @@
 package dev.codenation.gestaohospital;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import dev.codenation.gestaohospital.hospital.Hospital;
-import dev.codenation.gestaohospital.paciente.Genero;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.io.IOException;
+import java.text.ParseException;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.IOException;
-import java.text.ParseException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import dev.codenation.gestaohospital.hospital.Hospital;
+import dev.codenation.gestaohospital.padrao.Paginacao;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -48,7 +55,7 @@ public class HospitalTest {
     public void cadastra() throws ParseException, IOException {
         Hospital hospital = new Hospital();
         hospital.setNome(nomeHospital);
-        hospital.setLeitos(quantidadeLeitos);
+        hospital.setQuantidadeLeitos(quantidadeLeitos);
         hospital.setLeitosDisponiveis(quantidadeLeitos);
 
         ResponseEntity<String> response = restTemplate.exchange("/v1/hospitais", HttpMethod.POST, new HttpEntity<>(mapper.writeValueAsString(hospital), httpHeaders), String.class);
@@ -59,9 +66,8 @@ public class HospitalTest {
 
     @Test
     public void pesquisa() {
-        ResponseEntity<String> response = restTemplate.getForEntity("/v1/hospitais", String.class);
-        System.out.println("Retorno: "+response.getBody());
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Paginacao<?> response = restTemplate.getForObject("/v1/hospitais", Paginacao.class);
+        assertThat(response).isNotNull();
     }
 
     @Test

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,18 +19,18 @@ public class TipoProdutoController {
 	@Autowired
 	private TipoProdutoService service;
 	
-	@GetMapping("/todos")
-	public List<TipoProduto> listar() {
-		return service.listar();
+	@GetMapping
+	public ResponseEntity<List<TipoProdutoResource>> listar() {
+		return ResponseEntity.ok(service.listar());
 	}
 	
 	@GetMapping("/{id}")
-	public Optional<TipoProduto> obterPorId(@RequestParam("id") String id) {
+	public Optional<TipoProdutoResource> obterPorId(@RequestParam("id") String id) {
 		return service.obterPorId(id);
 	}
 	
 	@PostMapping
-	public TipoProduto cadastrar(@RequestBody TipoProduto tipoProduto) {
+	public TipoProdutoResource cadastrar(@RequestBody TipoProduto tipoProduto) {
 		return service.cadastrar(tipoProduto);
 	}
 
