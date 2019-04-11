@@ -1,6 +1,5 @@
 package dev.codenation.gestaohospital.paciente;
 
-import dev.codenation.gestaohospital.leito.Leito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
@@ -11,9 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.lang.reflect.InvocationTargetException;
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,12 +36,12 @@ public class PacienteController {
         return ResponseEntity.ok(service.obterPorId(Id).orElse(null));
     }
 
-    @GetMapping("/{cpf}")
-    public ResponseEntity<Paciente> obterPorCpf(@PathVariable(name = "cpf") String Cpf){
-        return ResponseEntity.ok(service.obterPorCpf(Cpf).orElse(null));
+    @GetMapping("/porCPF/{cpf}")
+    public ResponseEntity<List<Paciente>> obterPorCpf(@PathVariable(name = "cpf") String cpf){
+        return ResponseEntity.ok(service.obterPorCpf(cpf));
     }
 
-    @GetMapping("/{nome}")
+    @GetMapping("/porNome/{nome}")
     public ResponseEntity<List<Paciente>> obterPorNome(@PathVariable(name = "nome") String nome){
         return ResponseEntity.ok(service.obterPorNome(nome));
     }
@@ -53,5 +49,10 @@ public class PacienteController {
     @PostMapping()
     public ResponseEntity<Paciente> cadastrar(@RequestBody Paciente paciente){
             return new ResponseEntity<>(service.cadastrar(paciente), HttpStatus.OK);
+    }
+
+    @PutMapping()
+    public ResponseEntity<Paciente> atualizar(@RequestBody Paciente paciente){
+        return new ResponseEntity<>(service.alterar(paciente), HttpStatus.OK);
     }
 }

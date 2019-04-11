@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.geo.GeoResults;
@@ -67,7 +65,7 @@ public class HospitalController {
 	
 	@GetMapping("/{id}/estoque")
 	public ResponseEntity<List<Estoque>> listarEstoques(@PathVariable("id") String id) {
-		
+
 		return ResponseEntity.ok(service.listarEstoque(id));
 	}
 	

@@ -1,7 +1,5 @@
 package dev.codenation.gestaohospital.paciente;
 
-import dev.codenation.gestaohospital.hospital.Hospital;
-import dev.codenation.gestaohospital.hospital.HospitalController;
 import org.springframework.hateoas.ResourceSupport;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;

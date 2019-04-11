@@ -1,12 +1,11 @@
 package dev.codenation.gestaohospital.leito;
 
-import java.util.Date;
-
+import dev.codenation.gestaohospital.paciente.Paciente;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import dev.codenation.gestaohospital.padrao.BaseDocument;
 
-import dev.codenation.gestaohospital.documents.BaseDocument;
-import dev.codenation.gestaohospital.paciente.Paciente;
+import java.util.Date;
 
 @Document(collection = "leitos")
 public class Leito extends BaseDocument<String> {
@@ -18,9 +17,14 @@ public class Leito extends BaseDocument<String> {
     private Date dataEntrada;
     private Date dataSaida;
 
-    public Leito(){}
+    public Leito(){
+    	super();
+    }
 
-    @Override
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getId() {
     	return id;
     }

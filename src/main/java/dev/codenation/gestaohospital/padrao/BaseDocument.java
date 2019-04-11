@@ -1,4 +1,4 @@
-package dev.codenation.gestaohospital.documents;
+package dev.codenation.gestaohospital.padrao;
 
 import java.io.Serializable;
 
