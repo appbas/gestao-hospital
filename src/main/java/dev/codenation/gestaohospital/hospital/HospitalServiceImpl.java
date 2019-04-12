@@ -38,7 +38,7 @@ public class HospitalServiceImpl implements HospitalService {
 	private final Function<? super Hospital, ? extends HospitalResource> MAPPER = objeto -> HospitalResource.builder()
 			.comId(objeto.getId()).comQuantidadeLeitos(objeto.getQuantidadeLeitos()).comLeitosDisponiveis(objeto.getLeitosDisponiveis())
 			.comLocation(objeto.getLocation()).comNome(objeto.getNome()).comEstoque(objeto.getEstoque()).comLeitos(objeto.getLeitos()).build();
-
+ 
 	@Override
 	public GeoResults<Hospital> localizar(double longitude, double latitude, double distancia) {
 		
