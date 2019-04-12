@@ -18,7 +18,6 @@ import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
 
 import dev.codenation.gestaohospital.estoque.Estoque;
-import dev.codenation.gestaohospital.exceptions.NenhumResultadoException;
 import dev.codenation.gestaohospital.leito.Leito;
 import dev.codenation.gestaohospital.leito.TipoAcomodacaoEnum;
 import dev.codenation.gestaohospital.paciente.Paciente;
@@ -52,11 +51,7 @@ public class HospitalServiceImpl implements HospitalService {
 
 	@Override
 	public List<Estoque> listarEstoque(String id) {
-		Optional<Hospital> findById = repository.findById(id);
-		if (!findById.isPresent()) {
-			throw new NenhumResultadoException("Nenhum hospital encontrado");
-		}
-		return findById.map(Hospital::getEstoque).orElse(Collections.emptyList());
+		return repository.findById(id).map(Hospital::getEstoque).orElse(Collections.emptyList());
 	}
 
 	protected HospitalRepository getRepository() {
