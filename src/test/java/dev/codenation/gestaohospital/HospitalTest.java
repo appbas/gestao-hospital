@@ -4,7 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.HashMap;
+import java.util.List;
 
+import dev.codenation.gestaohospital.paciente.PacienteResource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import dev.codenation.gestaohospital.hospital.Hospital;
 import dev.codenation.gestaohospital.padrao.Paginacao;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -37,6 +43,7 @@ public class HospitalTest {
     private final HttpHeaders httpHeaders;
 
     private String id = "5cad7eaad942f909fc285675";
+    private String idPaciente = "5cad7eaad942f909fc285675";
 
     //PARA TESTAR CADASTRO
     private String nomeHospital = "Hospital NotreDame";
@@ -88,6 +95,13 @@ public class HospitalTest {
     public void localizaHospitalMaisProximo() {
         ResponseEntity<String> response = restTemplate.getForEntity("/v1/hospitais/localizar?lon="+longitude+"&lat="+latitude+"&distancia="+distancia, String.class);
         System.out.println("Retorno: "+response.getBody());
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+
+    @Test
+    public void listaPacientes() {
+        ResponseEntity<String> response = restTemplate.getForEntity("/v1/hospitais/" + id + "/pacientes", String.class);
+        System.out.println("Retorno: " + response.getBody());
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 }
