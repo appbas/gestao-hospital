@@ -18,6 +18,7 @@ import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Service;
 
 import dev.codenation.gestaohospital.estoque.Estoque;
+import dev.codenation.gestaohospital.exceptions.NenhumResultadoException;
 import dev.codenation.gestaohospital.leito.Leito;
 import dev.codenation.gestaohospital.leito.TipoAcomodacaoEnum;
 import dev.codenation.gestaohospital.paciente.Paciente;
@@ -37,7 +38,7 @@ public class HospitalServiceImpl implements HospitalService {
 
 	private final Function<? super Hospital, ? extends HospitalResource> MAPPER = objeto -> HospitalResource.builder()
 			.comId(objeto.getId()).comQuantidadeLeitos(objeto.getQuantidadeLeitos()).comLeitosDisponiveis(objeto.getLeitosDisponiveis())
-			.comLocation(objeto.getLocation()).comNome(objeto.getNome()).build();
+			.comLocation(objeto.getLocation()).comNome(objeto.getNome()).comEstoque(objeto.getEstoque()).comLeitos(objeto.getLeitos()).build();
 
 	@Override
 	public GeoResults<Hospital> localizar(double longitude, double latitude, double distancia) {
@@ -51,7 +52,11 @@ public class HospitalServiceImpl implements HospitalService {
 
 	@Override
 	public List<Estoque> listarEstoque(String id) {
-		return repository.findById(id).map(Hospital::getEstoque).orElse(Collections.emptyList());
+		Optional<Hospital> findById = repository.findById(id);
+		if (!findById.isPresent()) {
+			throw new NenhumResultadoException("Nenhum hospital encontrado");
+		}
+		return findById.map(Hospital::getEstoque).orElse(Collections.emptyList());
 	}
 
 	protected HospitalRepository getRepository() {

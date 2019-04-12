@@ -4,6 +4,8 @@ import dev.codenation.gestaohospital.padrao.BaseDocument;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 @Document(collection = "pacientes")
@@ -13,6 +15,7 @@ public class Paciente extends BaseDocument<String> {
     private String cpf;
     private String nomeCompleto;
     private Genero genero;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dataNascimento;
 
     public Paciente(){}

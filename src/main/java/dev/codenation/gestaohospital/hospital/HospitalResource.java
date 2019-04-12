@@ -1,5 +1,9 @@
 package dev.codenation.gestaohospital.hospital;
 
+import java.util.List;
+
+import dev.codenation.gestaohospital.estoque.Estoque;
+import dev.codenation.gestaohospital.leito.Leito;
 import dev.codenation.gestaohospital.padrao.GestaoHospitalResource;
 
 public class HospitalResource implements GestaoHospitalResource {
@@ -9,19 +13,22 @@ public class HospitalResource implements GestaoHospitalResource {
 	private Integer quantidadeLeitos;
 	private Integer leitosDisponiveis;
 	private double [] location;
-//	private List<Estoque> estoque;
+	private List<Estoque> estoque;
+	private List<Leito> leitos;
 
 	public HospitalResource() {
 		super();
 	}
 
-	public HospitalResource(String id, String nome, Integer quantidadeLeitos, Integer leitosDisponiveis, double [] location) {
+	public HospitalResource(String id, String nome, Integer quantidadeLeitos, Integer leitosDisponiveis, double [] location, List<Estoque> estoque, List<Leito> leitos) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.quantidadeLeitos = quantidadeLeitos;
 		this.leitosDisponiveis = leitosDisponiveis;
 		this.location = location;
+		this.estoque = estoque;
+		this.leitos = leitos;
 	}
 
 	public String getId() {
@@ -47,6 +54,14 @@ public class HospitalResource implements GestaoHospitalResource {
 	public static Builder builder() {
 		return new Builder();
 	}
+	
+	public List<Estoque> getEstoque() {
+		return estoque;
+	}
+
+	public List<Leito> getLeitos() {
+		return leitos;
+	}
 
 	public static class Builder {
 		private String id;
@@ -54,6 +69,8 @@ public class HospitalResource implements GestaoHospitalResource {
 		private Integer quantidadeLeitos;
 		private Integer leitosDisponiveis;
 		private double [] location;
+		private List<Estoque> estoque;
+		private List<Leito> leitos;
 		
 		public Builder comId(String id) {
 			this.id = id;
@@ -80,8 +97,20 @@ public class HospitalResource implements GestaoHospitalResource {
 			return this;
 		}
 		
+		public Builder comEstoque(List<Estoque> estoque) {
+			this.estoque = estoque;
+			return this;
+		}
+		
+		public Builder comLeitos(List<Leito> leitos) {
+			this.leitos = leitos;
+			return this;
+		}
+		
+		
+		
 		public HospitalResource build() {
-			return new HospitalResource(id, nome, quantidadeLeitos, leitosDisponiveis, location);
+			return new HospitalResource(id, nome, quantidadeLeitos, leitosDisponiveis, location, estoque, leitos);
 		}
 	}
 
