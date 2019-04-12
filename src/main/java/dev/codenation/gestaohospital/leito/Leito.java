@@ -1,63 +1,58 @@
 package dev.codenation.gestaohospital.leito;
 
-import dev.codenation.gestaohospital.paciente.Paciente;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import dev.codenation.gestaohospital.padrao.BaseDocument;
-
 import java.util.Date;
 
-@Document(collection = "leitos")
-public class Leito extends BaseDocument<String> {
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
-    @Id
-    private String id;
-    private TipoAcomodacaoEnum tipoAcomodacao;
-    private Paciente paciente;
-    private Date dataEntrada;
-    private Date dataSaida;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-    public Leito(){
-    	super();
-    }
+import dev.codenation.gestaohospital.paciente.Paciente;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+public class Leito {
 
-    public String getId() {
-    	return id;
-    }
+	private TipoAcomodacaoEnum tipoAcomodacao;
+	@DBRef
+	private Paciente paciente;
+	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date dataEntrada;
+	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	private Date dataSaida;
 
-    public TipoAcomodacaoEnum getTipoAcomodacao() {
-        return tipoAcomodacao;
-    }
+	public Leito() {
+		super();
+	}
 
-    public void setTipoAcomodacao(TipoAcomodacaoEnum tipoAcomodacao) {
-        this.tipoAcomodacao = tipoAcomodacao;
-    }
+	public TipoAcomodacaoEnum getTipoAcomodacao() {
+		return tipoAcomodacao;
+	}
 
-    public Paciente getPaciente() {
-        return paciente;
-    }
+	public void setTipoAcomodacao(TipoAcomodacaoEnum tipoAcomodacao) {
+		this.tipoAcomodacao = tipoAcomodacao;
+	}
 
-    public Date getDataEntrada() {
-        return dataEntrada;
-    }
+	public Paciente getPaciente() {
+		return paciente;
+	}
 
-    public void setDataEntrada(Date dataEntrada) {
-        this.dataEntrada = dataEntrada;
-    }
+	public Date getDataEntrada() {
+		return dataEntrada;
+	}
 
-    public Date getDataSaida() {
-        return dataSaida;
-    }
+	public void setDataEntrada(Date dataEntrada) {
+		this.dataEntrada = dataEntrada;
+	}
 
-    public void setDataSaida(Date dataSaida) {
-        this.dataSaida = dataSaida;
-    }
+	public Date getDataSaida() {
+		return dataSaida;
+	}
 
-    public void setPaciente(Paciente paciente){
-        this.paciente = paciente;
-    }
+	public void setDataSaida(Date dataSaida) {
+		this.dataSaida = dataSaida;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
 }

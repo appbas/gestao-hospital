@@ -4,23 +4,24 @@ import dev.codenation.gestaohospital.padrao.BaseDocument;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 @Document(collection = "pacientes")
 public class Paciente extends BaseDocument<String> {
     @Id
     private String id;
-    private String CPF;
+    private String cpf;
     private String nomeCompleto;
     private Genero genero;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dataNascimento;
-    private Date dataEntradaHospital;
-    private Date dataSaidaHospital;
 
     public Paciente(){}
 
     public Paciente(String cpf, String nomeCompleto, Date dataNascimento, Genero genero){
-        this.CPF = cpf;
+        this.cpf = cpf;
         this.nomeCompleto = nomeCompleto;
         this.dataNascimento = dataNascimento;
         this.genero = genero;
@@ -34,12 +35,12 @@ public class Paciente extends BaseDocument<String> {
     	return id;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String CPF) {
+        this.cpf = CPF;
     }
 
     public String getNomeCompleto() {
@@ -66,19 +67,4 @@ public class Paciente extends BaseDocument<String> {
         this.dataNascimento = dataNascimento;
     }
 
-    public Date getDataEntradaHospital() {
-        return dataEntradaHospital;
-    }
-
-    public void setDataEntradaHospital(Date dataEntradaHospital) {
-        this.dataEntradaHospital = dataEntradaHospital;
-    }
-
-    public Date getDataSaidaHospital() {
-        return dataSaidaHospital;
-    }
-
-    public void setDataSaidaHospital(Date dataSaidaHospital) {
-        this.dataSaidaHospital = dataSaidaHospital;
-    }
 }

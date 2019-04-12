@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import dev.codenation.gestaohospital.padrao.Paginacao;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,39 +22,33 @@ public class PacienteController {
     @Autowired
     private PacienteService service;
 
-    @GetMapping(produces = "application/hal+json")
-    public ResponseEntity<Resources<PacienteResource>> pesquisar(Pageable pageable,
-                                                                 PagedResourcesAssembler<Paciente> assembler) {
-        List<PacienteResource> collection = service.pesquisar(pageable).stream().map(PacienteResource::new)
-                .collect(Collectors.toList());
-        final Resources<PacienteResource> resources = new Resources<>(collection);
-        final String uriString = ServletUriComponentsBuilder.fromCurrentRequest().build().toUriString();
-        resources.add(new Link(uriString, "self"));
-        return ResponseEntity.ok(resources);
+    @GetMapping
+    public ResponseEntity<Paginacao<PacienteResource>> pesquisar(@RequestBody Paginacao<PacienteResource> paginacao) {
+    	return ResponseEntity.ok(service.pesquisar(paginacao));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Paciente> obterPorId(@PathVariable(name = "id") String Id){
+    public ResponseEntity<PacienteResource> obterPorId(@PathVariable(name = "id") String Id){
         return ResponseEntity.ok(service.obterPorId(Id).orElse(null));
     }
 
     @GetMapping("/porCPF/{cpf}")
-    public ResponseEntity<List<Paciente>> obterPorCpf(@PathVariable(name = "cpf") String cpf){
+    public ResponseEntity<List<PacienteResource>> obterPorCpf(@PathVariable(name = "cpf") String cpf){
         return ResponseEntity.ok(service.obterPorCpf(cpf));
     }
 
     @GetMapping("/porNome/{nome}")
-    public ResponseEntity<List<Paciente>> obterPorNome(@PathVariable(name = "nome") String nome){
+    public ResponseEntity<List<PacienteResource>> obterPorNome(@PathVariable(name = "nome") String nome){
         return ResponseEntity.ok(service.obterPorNome(nome));
     }
 
     @PostMapping()
-    public ResponseEntity<Paciente> cadastrar(@RequestBody Paciente paciente){
+    public ResponseEntity<PacienteResource> cadastrar(@RequestBody Paciente paciente){
             return new ResponseEntity<>(service.cadastrar(paciente), HttpStatus.OK);
     }
 
     @PutMapping()
-    public ResponseEntity<Paciente> atualizar(@RequestBody Paciente paciente){
+    public ResponseEntity<PacienteResource> atualizar(@RequestBody Paciente paciente){
         return new ResponseEntity<>(service.alterar(paciente), HttpStatus.OK);
     }
 }
